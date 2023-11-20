@@ -27,16 +27,3 @@ export const createLogger = async (options: LoggerOptions, rotateOptions: Partia
 
   return { logger, middlewareLogger }
 }
-
-
-const main = async () => {
-  const { logger } = await createLogger({ name: 'test' }, { destination: path.resolve(__dirname, 'logs') })
-  let counter = 1
-  setInterval(() => {
-    counter++
-    logger.info(`test ${counter}`)
-  }, 1000)
-}
-
-void main()
-
