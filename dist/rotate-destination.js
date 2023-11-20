@@ -36,3 +36,4 @@ const rotateDestination = (options) => __awaiter(void 0, void 0, void 0, functio
     return stream;
 });
 exports.default = rotateDestination;
+//# sourceMappingURL=rotate-destination.js.map

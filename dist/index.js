@@ -64,3 +64,4 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     }, 1000);
 });
 void main();
+//# sourceMappingURL=index.js.map
