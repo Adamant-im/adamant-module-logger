@@ -1,14 +1,13 @@
-import * as path from "path";
 import pino, { type LoggerOptions } from 'pino';
 import pinoHttp from 'pino-http';
 import pretty from 'pino-pretty'
 import rotateDestination from "./rotate-destination";
 import { type Options } from "rotating-file-stream";
 
-export const createLogger = async (options: LoggerOptions, rotateOptions: Partial<Options> & { destination: string }) => {
+export const createLogger = (options: LoggerOptions, rotateOptions: Partial<Options> & { destination: string }) => {
   const streams = [
     {
-      stream: await rotateDestination({
+      stream: rotateDestination({
         interval: '1d',
         size: '10M',
         maxFiles: 10,

@@ -16,21 +16,17 @@ const generatorInit = (destination: string) => {
   };
 }
 
-const rotateDestination = async (options: Options & {
+const rotateDestination = (options: Options & {
   destination: string;
 }) => {
   const { size, interval, maxFiles, maxSize } = options;
-  const stream = createStream(generatorInit(options.destination), {
+  return createStream(generatorInit(options.destination), {
     size: size || "1000B",
     interval: interval || "10m",
     compress: "gzip",
     maxFiles,
     maxSize
   });
-
-  await new Promise<void>((res) => stream.once('open', () => res()))
-
-  return stream
 }
 
 export default rotateDestination
