@@ -37,18 +37,10 @@ const createLogger = (options, rotateOptions, gelfOptions) => {
     const logger = (0, pino_1.default)(options, pino_1.default.multistream(streams));
     const middlewareLogger = (0, pino_http_1.default)({
         logger,
-        // customReceivedObject: (req, res, object) => {
-        //   return {
-        //     ...object,
-        //     res: {
-        //       ...object,
-        //       body: ![200, 201, '200', '201'].includes(object?.res?.statusCode) ? res.body : undefined,
-        //     }
-        //   }
-        // },
-        serializers: {
-            res: (res) => (Object.assign(Object.assign({}, res), { body: ![200, 201].includes(+res.statusCode) ? res.body : undefined }))
-        }
+        customReceivedObject: (req, res, object) => {
+            console.log(res);
+            return Object.assign({}, object);
+        },
     });
     return { logger, middlewareLogger };
 };

@@ -13,9 +13,7 @@ export declare const createLogger: (options: LoggerOptions, rotateOptions: Parti
     logger: import("pino").Logger<LoggerOptions>;
     middlewareLogger: import("pino-http").HttpLogger<import("http").IncomingMessage, import("http").ServerResponse<import("http").IncomingMessage>, {
         logger: import("pino").Logger<LoggerOptions>;
-        serializers: {
-            res: (res: any) => any;
-        };
+        customReceivedObject: (req: import("http").IncomingMessage, res: import("http").ServerResponse<import("http").IncomingMessage>, object: any) => any;
     }>;
 };
 export {};
