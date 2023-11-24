@@ -55,7 +55,18 @@ export const createLogger = (
 
   const logger = pino(options, pino.multistream(streams));
 
-  const middlewareLogger = pinoHttp({ logger });
+  const middlewareLogger = pinoHttp({
+    logger,
+    customErrorObject: (req, res, loggedError) => {
+      return {
+        ...loggedError,
+        res: {
+          ...loggedError,
+          body: res.err,
+        }
+      }
+    }
+  });
 
   return { logger, middlewareLogger }
 }

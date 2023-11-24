@@ -35,7 +35,12 @@ const createLogger = (options, rotateOptions, gelfOptions) => {
         });
     }
     const logger = (0, pino_1.default)(options, pino_1.default.multistream(streams));
-    const middlewareLogger = (0, pino_http_1.default)({ logger });
+    const middlewareLogger = (0, pino_http_1.default)({
+        logger,
+        customErrorObject: (req, res, loggedError) => {
+            return Object.assign(Object.assign({}, loggedError), { res: Object.assign(Object.assign({}, loggedError), { body: res.err }) });
+        }
+    });
     return { logger, middlewareLogger };
 };
 exports.createLogger = createLogger;
