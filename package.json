@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "pino": "^8.16.2",
+    "pino-gelf": "^2.1.0",
     "pino-http": "^8.5.1",
     "pino-pretty": "^10.2.3",
     "rotating-file-stream": "^3.1.1",
