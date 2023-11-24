@@ -57,14 +57,20 @@ export const createLogger = (
 
   const middlewareLogger = pinoHttp({
     logger,
-    customErrorObject: (req, res, loggedError) => {
-      return {
-        ...loggedError,
-        res: {
-          ...loggedError,
-          body: res.err,
-        }
-      }
+    // customReceivedObject: (req, res, object) => {
+    //   return {
+    //     ...object,
+    //     res: {
+    //       ...object,
+    //       body: ![200, 201, '200', '201'].includes(object?.res?.statusCode) ? res.body : undefined,
+    //     }
+    //   }
+    // },
+    serializers: {
+      res: (res) => ({
+        ...res,
+        body: ![200, 201].includes(+res.statusCode) ? res.body : undefined,
+      })
     }
   });
 
